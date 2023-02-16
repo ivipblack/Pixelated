@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>905867896345-45j74li8m85e30o0tpg931u21ca7h3ir.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.905867896345-45j74li8m85e30o0tpg931u21ca7h3ir</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCDJuuYw72BWFM66JCL2a5azR5n24Bivew</string>
+	<key>GCM_SENDER_ID</key>
+	<string>905867896345</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.pixelated</string>
+	<key>PROJECT_ID</key>
+	<string>pixelated-436a3</string>
+	<key>STORAGE_BUCKET</key>
+	<string>pixelated-436a3.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:905867896345:ios:e4efebdf78ea482432ac88</string>
+</dict>
+</plist>

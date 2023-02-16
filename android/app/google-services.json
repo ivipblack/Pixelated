@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "905867896345",
+    "project_id": "pixelated-436a3",
+    "storage_bucket": "pixelated-436a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:905867896345:android:9bf3c33e33e23c8432ac88",
+        "android_client_info": {
+          "package_name": "com.example.pixelated"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "905867896345-2q77rfv7gs0okoiv8q2k8gt8gjcmjkme.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKEoA3DdUcmLkRug-bKVivSZQH_J5dcyM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "905867896345-2q77rfv7gs0okoiv8q2k8gt8gjcmjkme.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
