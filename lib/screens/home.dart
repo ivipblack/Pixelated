@@ -32,7 +32,7 @@ class Home extends StatelessWidget {
                 child: SafeArea(
                   child: Container(
                     width: 250,
-                    height: 600,
+                    height: 550,
                     color: Colors.amber,
                     child: Column(
                       children: [
