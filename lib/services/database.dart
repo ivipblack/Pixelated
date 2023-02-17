@@ -7,7 +7,7 @@ class DatabaseService {
   DatabaseService({required this.uid});
   late User user;
   final CollectionReference customerCollection =
-      FirebaseFirestore.instance.collection('Customer');
+      FirebaseFirestore.instance.collection('User');
   Future updateUserData(String email, String phoneNumber) async {
     user = User(
       id: uid,

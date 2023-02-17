@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:go_router/go_router.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:pixelated/home_base.dart';
+import 'package:pixelated/screens/login/register.dart';
 import 'package:pixelated/screens/login/verify.dart';
 import 'package:pixelated/widgets/custom_button.dart';
 import 'package:pixelated/widgets/custom_textfield.dart';
@@ -162,6 +164,44 @@ class _LoginViewState extends State<LoginView> {
                                   // push context to
                                   signIn();
                                 }),
+                            RichText(
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: 'Don\'t have an account yet?',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize:
+                                          MediaQuery.of(context).size.height *
+                                              0.017,
+                                    ),
+                                  ),
+                                  WidgetSpan(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const UserSignUpView(),
+                                          ),
+                                        );
+                                      },
+                                      child: Text(
+                                        ' Sign Up',
+                                        style: TextStyle(
+                                          color: Color(0xffF9A826),
+                                          decoration: TextDecoration.underline,
+                                          fontSize: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.017,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -175,14 +215,32 @@ class _LoginViewState extends State<LoginView> {
   }
 
   Future signIn() async {
-    // showDialog(
-    //   context: context,
-    //   builder: (context) {
-    //     return const Center(
-    //       child: CircularProgressIndicator(),
-    //     );
-    //   },
-    // );
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Center(
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.1,
+            width: MediaQuery.of(context).size.height * 0.1,
+            child: LoadingIndicator(
+              indicatorType: Indicator.ballPulse,
+
+              /// Required, The loading type of the widget
+              colors: const [Colors.white],
+
+              /// Optional, The color collections
+              strokeWidth: 1,
+
+              /// Optional, The stroke of the line, only applicable to widget which contains line
+
+              /// Optional, Background of the widget
+
+              /// Optional, the stroke backgroundColor
+            ),
+          ),
+        );
+      },
+    );
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: userEmailController.text.trim(),
@@ -192,6 +250,6 @@ class _LoginViewState extends State<LoginView> {
     } on FirebaseAuthException catch (e) {
       print(e);
     }
-    // navigatorKey.currentState!.popUntil((route) => route.isFirst);
+    navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 }

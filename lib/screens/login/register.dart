@@ -24,7 +24,6 @@ class _UserSignUpViewState extends State<UserSignUpView> {
   final userEmailController = TextEditingController();
   final userPasswordController = TextEditingController();
   final phoneController = TextEditingController();
-  final confrimPasswordController = TextEditingController();
 
   bool index = true;
   bool checkBoxValue = false;
@@ -33,7 +32,6 @@ class _UserSignUpViewState extends State<UserSignUpView> {
     userEmailController.dispose();
     userPasswordController.dispose();
     phoneController.dispose();
-    confrimPasswordController.dispose();
 
     super.dispose();
   }
@@ -48,7 +46,7 @@ class _UserSignUpViewState extends State<UserSignUpView> {
           child: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/loginBG.png"),
+                image: AssetImage("assets/login_background.png"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -73,11 +71,11 @@ class _UserSignUpViewState extends State<UserSignUpView> {
                         ),
                       ),
                       Text(
-                        'Locare',
+                        'Pixelated',
                         style: TextStyle(
                           height: 1,
                           color: Colors.white,
-                          fontSize: MediaQuery.of(context).size.height * 0.1,
+                          fontSize: MediaQuery.of(context).size.height * 0.05,
                           // fontWeight: FontWeight.bold
                         ),
                       ),
@@ -85,79 +83,45 @@ class _UserSignUpViewState extends State<UserSignUpView> {
                         height: MediaQuery.of(context).size.height * 0.01,
                       ),
                       // make a line
-                      index
-                          ? Column(
-                              children: [
-                                CustomTextFormField(
-                                  label: 'Email',
-                                  hint: 'Enter your email',
+                      Column(
+                        children: [
+                          CustomTextFormField(
+                            label: 'Email',
+                            hint: 'Enter your email',
+                            isPassword: false,
+                            controller: userEmailController,
+                          ),
+                          CustomTextFormField(
+                              label: 'Password',
+                              hint: 'Enter your password',
+                              isPassword: true,
+                              controller: userPasswordController),
+                          Column(
+                            children: [
+                              CustomTextField(
+                                  label: 'Phone Number',
+                                  hint: 'Enter Your phone number',
                                   isPassword: false,
-                                  controller: userEmailController,
-                                ),
-                                CustomTextFormField(
-                                    label: 'Password',
-                                    hint: 'Enter your password',
-                                    isPassword: true,
-                                    controller: userPasswordController),
-                                CustomTextField(
-                                    label: 'Confirm Password',
-                                    hint: 'Enter your password',
-                                    isPassword: true,
-                                    controller: confrimPasswordController),
-                                CustomButton(
-                                  label: 'Next',
-                                  onPressed: () {
-                                    setState(() {
-                                      index = !index;
-                                    });
-                                  },
-                                ),
-                              ],
-                            )
-                          : Column(
-                              children: [
-                                CustomTextField(
-                                    label: 'Phone Number',
-                                    hint: 'Enter Your phone number',
-                                    isPassword: false,
-                                    controller: phoneController),
-                                // make a button to go back
+                                  controller: phoneController),
+                              CustomButton(
+                                label: 'Sign Up',
+                                onPressed: () {
+                                  setState(() {
+                                    signUp(
+                                      context,
+                                      userEmailController.text.trim(),
+                                      userPasswordController.text.trim(),
+                                      phoneController.text.trim(),
+                                    );
+                                  });
+                                },
+                              ),
+                            ],
+                          )
 
-                                GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      index = !index;
-                                    });
-                                  },
-                                  child: Container(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      'Back',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize:
-                                            MediaQuery.of(context).size.height *
-                                                0.02,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                CustomButton(
-                                  label: 'Sign Up',
-                                  onPressed: () {
-                                    setState(() {
-                                      signUp(
-                                        context,
-                                        userEmailController.text.trim(),
-                                        userPasswordController.text.trim(),
-                                        phoneController.text.trim(),
-                                      );
-                                      // index = !index;
-                                    });
-                                  },
-                                ),
-                              ],
-                            ),
+                          // make a button to go back
+                        ],
+                      ),
                       RichText(
                           text: TextSpan(children: [
                         TextSpan(
@@ -195,57 +159,7 @@ class _UserSignUpViewState extends State<UserSignUpView> {
                                 height: 36,
                               )),
                         ),
-                        Text(
-                          "Or login with",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize:
-                                MediaQuery.of(context).size.height * 0.017,
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                              margin: EdgeInsets.only(
-                                  left: MediaQuery.of(context).size.height *
-                                      0.01),
-                              child: Divider(
-                                color: Colors.white,
-                                height: 36,
-                              )),
-                        ),
                       ]),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.02,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          IconButton(
-                              // add width and hieght
-                              iconSize:
-                                  MediaQuery.of(context).size.height * 0.1,
-                              onPressed: () {},
-                              icon: SvgPicture.asset(
-                                'assets/google.svg',
-                                width:
-                                    MediaQuery.of(context).size.height * 0.075,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.075,
-                              )),
-                          IconButton(
-                              // add width and hieght
-                              iconSize:
-                                  MediaQuery.of(context).size.height * 0.1,
-                              onPressed: () {},
-                              icon: SvgPicture.asset(
-                                'assets/apple.svg',
-                                width:
-                                    MediaQuery.of(context).size.height * 0.075,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.075,
-                              )),
-                        ],
-                      ),
                     ],
                   ),
                 ),
