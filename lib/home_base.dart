@@ -6,9 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'widgets/bottom_nav_bar.dart';
 
 class HomeBase extends HookWidget {
-  final Widget child;
-
-  const HomeBase({required this.child, super.key});
+  const HomeBase({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +29,7 @@ class HomeBase extends HookWidget {
         backgroundColor: Colors.white,
         centerTitle: false,
       ),
-      body: child,
+      body: Text('body'),
       bottomNavigationBar: BottomNavBar(pageIndex: initialPageIndex),
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
