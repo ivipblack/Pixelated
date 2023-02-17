@@ -1,24 +1,24 @@
 class User {
   String id;
   String phoneNumber;
-  String defaultAddress;
+  String? defaultAddress;
   bool hadBreakfast;
   bool hadLunch;
   bool hadDinner;
-  String currentOrder;
-  List<String> currentDeliveryOrders = [];
+  String? currentOrder;
+  List<String>? currentDeliveryOrders = [];
   bool isAvailable;
   bool isVerifiedAsDliverer = true;
 
   User({
     required this.id,
     required this.phoneNumber,
-    required this.defaultAddress,
+    this.defaultAddress,
     this.hadLunch = false,
     this.hadDinner = false,
     this.hadBreakfast = false,
-    required this.currentOrder,
-    required this.currentDeliveryOrders,
+    this.currentOrder,
+    this.currentDeliveryOrders,
     this.isAvailable = true,
   });
 
