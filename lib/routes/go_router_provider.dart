@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:pixelated/home_base.dart';
 import 'package:pixelated/screens/home.dart';
+import 'package:pixelated/screens/login/login_view.dart';
+import 'package:pixelated/screens/login/verify.dart';
 
 final GlobalKey<NavigatorState> _rootNavigator =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -14,8 +16,7 @@ final goRouterProvider = Provider<GoRouter>(
     return GoRouter(
       routes: [
         ShellRoute(
-          builder: (context, state, child) =>
-              HomeBase(key: state.pageKey, child: child),
+          builder: (context, state, child) => HomeBase(key: state.pageKey),
           routes: [
             GoRoute(
               path: '/home',
@@ -44,8 +45,12 @@ final goRouterProvider = Provider<GoRouter>(
           path: '/home',
           builder: (context, state) => const Home(),
         ),
+        GoRoute(
+          path: '/login',
+          builder: (context, state) => const LoginView(),
+        ),
       ],
-      initialLocation: '/home',
+      initialLocation: '/login',
       navigatorKey: _rootNavigator,
     );
   },
