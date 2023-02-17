@@ -27,8 +27,8 @@ Future signUp(
         .createUserWithEmailAndPassword(email: email, password: password);
     User? user = userCredential.user;
 
-    // await DatabaseService(uid: user!.uid)
-    // .updateUserData(email, phoneNumber);
+    await DatabaseService(uid: user!.uid)
+    .updateUserData(email, phoneNumber);
   } on FirebaseAuthException catch (e) {
     print(e.toString());
   }

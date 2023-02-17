@@ -21,7 +21,7 @@ class Home extends StatelessWidget {
           MaterialPageRoute(builder: (context) => const ChooseMeal()),
         );
       },
-      child: const Text('Get Meals'),
+      child: Center(child: const Text('Get Meals')),
     ));
   }
 }
