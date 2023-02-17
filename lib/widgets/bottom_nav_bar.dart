@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:pixelated/screens/home.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({super.key, required this.pageIndex});
@@ -8,27 +8,6 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void onBottomNavTap(int index) {
-      pageIndex.value = index;
-      switch (index) {
-        case 0:
-          context.go('/home');
-          break;
-        case 1:
-          context.go('/1');
-          break;
-        case 2:
-          context.go('/2');
-          break;
-        case 3:
-          context.go('/3');
-          break;
-        case 4:
-          context.go('/4');
-          break;
-      }
-    }
-
     return Container(
       decoration: BoxDecoration(
         boxShadow: [
@@ -63,7 +42,7 @@ class BottomNavBar extends StatelessWidget {
             label: 'Settings',
           ),
         ],
-        onTap: ((value) => onBottomNavTap(value)),
+        onTap: (index) => pageIndex.value = index,
         currentIndex: pageIndex.value,
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.blueGrey,
