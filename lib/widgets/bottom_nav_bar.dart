@@ -78,7 +78,7 @@ class BottomNavBar extends StatelessWidget {
                             ],
                           ),
                         ),
-                        onTap: () => onBottomNavTap(0),
+                        onTap: () => pageIndex.value = 0,
                       ),
                     ),
                     Container(
@@ -119,7 +119,7 @@ class BottomNavBar extends StatelessWidget {
                             ],
                           ),
                         ),
-                        onTap: () => onBottomNavTap(1),
+                        onTap: () => pageIndex.value = 1,
                       ),
                     ),
                     Container(
@@ -160,7 +160,7 @@ class BottomNavBar extends StatelessWidget {
                             ],
                           ),
                         ),
-                        onTap: () => onBottomNavTap(2),
+                        onTap: () => pageIndex.value = 2,
                       ),
                     ),
                   ],

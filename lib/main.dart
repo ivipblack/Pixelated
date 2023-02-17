@@ -2,11 +2,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pixelated/home_base.dart';
-import 'package:pixelated/routes/go_router_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pixelated/screens/home.dart';
 import 'package:pixelated/screens/login/login_view.dart';
 
 import 'firebase_options.dart';
@@ -23,7 +20,6 @@ Future<void> main() async {
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -63,7 +59,7 @@ class MainPage extends StatelessWidget {
               child: Text('Something went wrong'),
             );
           } else if (snapshot.hasData) {
-            return const Home();
+            return const HomeBase();
           } else {
             return const LoginView();
           }
