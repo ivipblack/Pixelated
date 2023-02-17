@@ -18,21 +18,17 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(
-    const ProviderScope(
-      child: MyApp(),
-    ),
+    MyApp(),
   );
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-class MyApp extends ConsumerStatefulWidget {
+
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
-  ConsumerState<MyApp> createState() => _MyAppState();
-}
 
-class _MyAppState extends ConsumerState<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
