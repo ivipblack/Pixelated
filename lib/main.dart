@@ -60,7 +60,7 @@ class MainPage extends StatelessWidget {
               child: Text('Something went wrong'),
             );
           } else if (snapshot.hasData) {
-            return OrderDetails();
+            return const OrderDetails();
           } else {
             return const LoginView();
           }

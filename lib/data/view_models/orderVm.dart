@@ -30,8 +30,8 @@ class OrderVM {
       iconPath: 'assets/hummus.svg',
     ),
     OrderCardModel(
-      label: 'Khobuz',
-      iconPath: 'assets/khobuz.svg',
+      label: 'Tabbulah',
+      iconPath: 'assets/tabbulah.svg',
     ),
   ];
   static List<OrderCardModel> sweetList = [
