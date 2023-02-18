@@ -198,6 +198,8 @@ class OrdersControl extends StatelessWidget {
                                   Text("Bevarage: " + orders[index].drink),
                                   Text("Side: " + orders[index].salad),
                                   Text("Sweet: " + orders[index].sweet),
+                                  Text("Special instructions: " +
+                                      orders[index].prefers!),
                                 ],
                               ),
                             );
