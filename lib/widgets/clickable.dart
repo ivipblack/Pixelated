@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants/colors.dart';
+
 class Clickable extends StatelessWidget {
   final String text;
   final Function() theFunction;
@@ -41,7 +43,7 @@ class Clickable extends StatelessWidget {
               style: ButtonStyle(
                   elevation: MaterialStateProperty.all<double>(0),
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(Color(0XFFFFA724)),
+                      MaterialStateProperty.all<Color>(MyColors.myOrange),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(32.0),
@@ -50,12 +52,12 @@ class Clickable extends StatelessWidget {
                 theFunction();
               },
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(12.0),
                 child: Text(
                   text,
                   style: TextStyle(
                       color: Colors.black,
-                      fontSize: MediaQuery.of(context).size.height * 0.016),
+                      fontSize: MediaQuery.of(context).size.height * 0.019),
                 ),
               ),
             ),
