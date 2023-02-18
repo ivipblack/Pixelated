@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:pixelated/home_base.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pixelated/screens/login/login_view.dart';
+import 'package:pixelated/screens/login/utils.dart';
 
 import 'firebase_options.dart';
 
@@ -29,8 +30,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      scaffoldMessengerKey: Utils.messengerKey,
       navigatorKey: navigatorKey,
+      debugShowCheckedModeBanner: false,
       title: 'Pixelated',
       theme: ThemeData(
         // primarySwatch: Colors.blue,
@@ -40,7 +42,6 @@ class MyApp extends StatelessWidget {
       ),
       home: MainPage(),
     );
-    // final router = ref.watch(goRouterProvider);
   }
 }
 

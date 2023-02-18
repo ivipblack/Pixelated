@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../main.dart';
+import '../screens/login/utils.dart';
 import 'database.dart';
 
 final formKey = GlobalKey<FormState>();
@@ -27,10 +28,10 @@ Future signUp(
         .createUserWithEmailAndPassword(email: email, password: password);
     User? user = userCredential.user;
 
-    await DatabaseService(uid: user!.uid)
-    .updateUserData(email, phoneNumber);
+    await DatabaseService(uid: user!.uid).updateUserData(email, phoneNumber);
   } on FirebaseAuthException catch (e) {
     print(e.toString());
+    Utils.showSnackBar(e.message);
   }
   navigatorKey.currentState!.popUntil((route) => route.isFirst);
 }

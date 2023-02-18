@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:pixelated/home_base.dart';
 import 'package:pixelated/screens/login/register.dart';
+import 'package:pixelated/screens/login/utils.dart';
 import 'package:pixelated/screens/login/verify.dart';
 import 'package:pixelated/widgets/custom_button.dart';
 import 'package:pixelated/widgets/custom_textfield.dart';
@@ -58,43 +59,60 @@ class _LoginViewState extends State<LoginView> {
                     // axis
 
                     children: [
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.start,
+                      //   children: [
+                      //     IconButton(
+                      //       icon: const Icon(Icons.arrow_back_ios),
+                      //       color: Colors.white,
+                      //       onPressed: () {
+                      //         Navigator.pop(context);
+                      //       },
+                      //     ),
+                      //   ],
+                      // ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.05,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.arrow_back_ios),
-                            color: Colors.white,
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.05,
+                        height: MediaQuery.of(context).size.height * 0.08,
                       ),
                       Text(
-                        'We’ll need your phone\n number and student ID',
-                        textAlign: TextAlign.center,
+                        'Welcome to',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: MediaQuery.of(context).size.height * 0.034,
+                          fontSize: MediaQuery.of(context).size.height * 0.05,
                           // fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
-                        'To make sure you\'re a student',
-                        textAlign: TextAlign.left,
+                        'Pixelated',
                         style: TextStyle(
-                          color: const Color(0XFFADADAD),
-
-                          fontSize: MediaQuery.of(context).size.height * 0.02,
-                          // fontWeight: FontWeight.bold,
+                          height: 1,
+                          color: Colors.white,
+                          fontSize: MediaQuery.of(context).size.height * 0.05,
+                          // fontWeight: FontWeight.bold
                         ),
                       ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.01,
+                      ),
+                      // Text(
+                      //   'We’ll need your phone\n number and student ID',
+                      //   textAlign: TextAlign.center,
+                      //   style: TextStyle(
+                      //     color: Colors.white,
+                      //     fontSize: MediaQuery.of(context).size.height * 0.034,
+                      //     // fontWeight: FontWeight.bold,
+                      //   ),
+                      // ),
+                      // Text(
+                      //   'To make sure you\'re a student',
+                      //   textAlign: TextAlign.left,
+                      //   style: TextStyle(
+                      //     color: const Color(0XFFADADAD),
+
+                      //     fontSize: MediaQuery.of(context).size.height * 0.02,
+                      //     // fontWeight: FontWeight.bold,
+                      //   ),
+                      // ),
                       Padding(
                         padding: EdgeInsets.fromLTRB(
                             // MediaQuery.of(context).size.width * 0.042,
@@ -104,7 +122,7 @@ class _LoginViewState extends State<LoginView> {
                             0,
                             MediaQuery.of(context).size.height * 0.02),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          // crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             CustomTextFormField(
                                 label: 'Email',
@@ -189,7 +207,8 @@ class _LoginViewState extends State<LoginView> {
                                       child: Text(
                                         ' Sign Up',
                                         style: TextStyle(
-                                          color: Color(0xffF9A826),
+                                          color: Color.fromARGB(
+                                              255, 215, 220, 231),
                                           decoration: TextDecoration.underline,
                                           fontSize: MediaQuery.of(context)
                                                   .size
@@ -249,6 +268,7 @@ class _LoginViewState extends State<LoginView> {
       // get customer data from firebase and store it in the customer object
     } on FirebaseAuthException catch (e) {
       print(e);
+      Utils.showSnackBar(e.message);
     }
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }

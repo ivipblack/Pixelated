@@ -35,7 +35,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       padding: EdgeInsets.fromLTRB(
           // MediaQuery.of(context).size.width * 0.042,
           0,
-          MediaQuery.of(context).size.height * 0.04,
+          MediaQuery.of(context).size.height * 0.02,
           // MediaQuery.of(context).size.width * 0.042,
           0,
           MediaQuery.of(context).size.height * 0.02),
