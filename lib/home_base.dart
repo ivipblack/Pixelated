@@ -9,7 +9,12 @@ import 'screens/orders_page.dart';
 import 'widgets/bottom_nav_bar.dart';
 
 class HomeBase extends HookWidget {
-  const HomeBase({super.key});
+  HomeBase({
+    super.key,
+    required this.pageNum,
+  });
+
+  int pageNum;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +23,12 @@ class HomeBase extends HookWidget {
       OrdersPage(),
       OrderDetails(),
     ];
-
-    final initialPageIndex = useState(0);
+    final initialPageIndex;
+    if (pageNum == 1) {
+      initialPageIndex = useState(1);
+    } else {
+      initialPageIndex = useState(0);
+    }
 
     return Scaffold(
       body: IndexedStack(

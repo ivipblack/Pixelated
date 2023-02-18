@@ -1,7 +1,7 @@
 class Orders {
   final String customerId;
   final String phoneNumber;
-  final String delivererPhoneNumber;
+  String? delivererPhoneNumber;
   String? delivererId;
   final String address;
   final String status;
@@ -10,7 +10,7 @@ class Orders {
   final String drink;
   final String salad;
   final String sweet;
-  final bool needBread;
+  bool? needBread;
   String? prefers;
 
   Orders({
@@ -22,10 +22,10 @@ class Orders {
     required this.drink,
     required this.salad,
     required this.sweet,
-    required this.needBread,
+    this.needBread,
     this.delivererId,
     required this.phoneNumber,
-    required this.delivererPhoneNumber,
+    this.delivererPhoneNumber,
     this.prefers,
   });
 

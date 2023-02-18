@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:pixelated/constants/colors.dart';
 import '../data/web_services/meals_services.dart';
+import 'order_details.dart';
 
 class ChooseMeal extends StatefulWidget {
   const ChooseMeal({super.key});
@@ -129,7 +130,14 @@ class _ChooseMealState extends State<ChooseMeal> {
                     ],
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => OrderDetails(),
+                        ),
+                      );
+                    },
                     child: Container(
                       height: 26,
                       width: 85,

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pixelated/constants/colors.dart';
 import 'package:pixelated/data/view_models/orderVm.dart';
+import 'package:pixelated/screens/choose_meal.dart';
 import 'package:pixelated/widgets/order/order_card.dart';
+
+import '../../screens/payment_page.dart';
 
 class OrderContainer extends StatelessWidget {
   const OrderContainer({super.key});
@@ -122,22 +125,32 @@ class OrderContainer extends StatelessWidget {
                     color: MyColors.myOrange,
                     borderRadius: BorderRadius.circular(32),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: const [
-                      Text(
-                        'Total: 4.60 SAR',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const PaymentPage(),
                         ),
-                      ),
-                      Text(
-                        'Pay',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
+                      );
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: const [
+                        Text(
+                          'Total: 4.60 SAR',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                    ],
+                        Text(
+                          'Pay',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

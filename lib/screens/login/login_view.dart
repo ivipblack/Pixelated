@@ -7,7 +7,6 @@ import 'package:loading_indicator/loading_indicator.dart';
 import 'package:pixelated/home_base.dart';
 import 'package:pixelated/screens/login/register.dart';
 import 'package:pixelated/screens/login/utils.dart';
-import 'package:pixelated/screens/login/verify.dart';
 import 'package:pixelated/widgets/custom_button.dart';
 import 'package:pixelated/widgets/custom_textfield.dart';
 

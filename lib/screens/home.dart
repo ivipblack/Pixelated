@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pixelated/screens/choose_meal.dart';
 
 import '../widgets/optionbox.dart';
 import 'order_details.dart';
@@ -40,7 +41,7 @@ class Home extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const OrderDetails(),
+                            builder: (context) => const ChooseMeal(),
                           ),
                         );
                       },

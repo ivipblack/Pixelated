@@ -41,6 +41,15 @@ class OrdersControl extends StatelessWidget {
                       orders.add(order);
                     }
                   }
+                  for (var i = 0; i < orders.length; i++) {
+                    if (orders[i].customerId == uid) {
+                      return Container(
+                          width: double.infinity,
+                          child:
+                              AssignedCard(context, orders, i, orderSnapshot));
+                    }
+                  }
+
                   if (user.isAvailable &&
                       user.isVerifiedAsDliverer &&
                       orders.isNotEmpty) {
@@ -52,23 +61,8 @@ class OrdersControl extends StatelessWidget {
                             (orders[index].delivererId == '' ||
                                 orders[index].delivererId == null) &&
                             orders[index].customerId != uid) {
-                          // return Card(
-                          //   child: ListTile(
-                          //     title: Text(orders[index].address),
-                          //     subtitle: Text(orders[index].status),
-                          //     trailing: Text('6.8'),
-                          //   ),
-                          // );
                           return OrderToDeliverCard(
                               orders, index, orderSnapshot);
-                        } else if (orders[index].customerId == uid) {
-                          return Card(
-                            child: ListTile(
-                              title: Text("Your Order"),
-                              subtitle: Text(orders[index].status),
-                              trailing: Text('6.8'),
-                            ),
-                          );
                         } else if (orders[index].delivererId == uid) {
                           return AssignedCard(
                               context, orders, index, orderSnapshot);
@@ -143,10 +137,16 @@ class OrdersControl extends StatelessWidget {
                                 "Phone number: " + orders[index].phoneNumber,
                               ),
                               Text("Status: " + orders[index].status),
-                              Text("Total price: 6.8 SAR"),
-                              Text(MealsServices.getMealDetails(
-                                orders[index].meal,
-                              )),
+                              Text("Total price: 7.6 SAR"),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                "Order: \n" +
+                                    MealsServices.getMealDetails(
+                                      orders[index].meal,
+                                    ),
+                              ),
                             ],
                           ),
                           actions: [
@@ -203,7 +203,7 @@ class OrdersControl extends StatelessWidget {
               ],
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
                   icon: Icon(Icons.check),
@@ -212,12 +212,6 @@ class OrdersControl extends StatelessWidget {
                         .collection('Orders')
                         .doc(orderSnapshot.data!.docs[index].id)
                         .update({'delivererId': uid, 'status': 'Assigned'});
-                  },
-                ),
-                IconButton(
-                  icon: const Icon(Icons.close),
-                  onPressed: () {
-                    orders.remove(index);
                   },
                 ),
               ],
