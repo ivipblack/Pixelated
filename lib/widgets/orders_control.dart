@@ -1,12 +1,14 @@
-// ignore_for_file: prefer_interpolation_to_compose_strings, prefer_const_constructors
+// ignore_for_file: prefer_interpolation_to_compose_strings, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pixelated/data/models/Meals%20Models/Meat.dart';
 import 'package:pixelated/data/web_services/meals_services.dart';
 
+import '../constants/colors.dart';
 import '../data/models/User.dart';
 import '../data/models/order.dart';
+import 'mu_order_card.dart';
 
 class OrdersControl extends StatelessWidget {
   const OrdersControl({
@@ -43,10 +45,7 @@ class OrdersControl extends StatelessWidget {
                   }
                   for (var i = 0; i < orders.length; i++) {
                     if (orders[i].customerId == uid) {
-                      return Container(
-                          width: double.infinity,
-                          child:
-                              AssignedCard(context, orders, i, orderSnapshot));
+                      return MyOrderCard(orders: orders, i: i);
                     }
                   }
 
@@ -222,6 +221,8 @@ class OrdersControl extends StatelessWidget {
     );
   }
 }
+
+
 
 // if (orderSnapshot.data!.docs[index]['status'] ==
 //                                 'Pending' &&

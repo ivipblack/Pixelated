@@ -12,6 +12,7 @@ class Orders {
   final String sweet;
   bool? needBread;
   String? prefers;
+  final String orderId;
 
   Orders({
     required this.customerId,
@@ -27,6 +28,7 @@ class Orders {
     required this.phoneNumber,
     this.delivererPhoneNumber,
     this.prefers,
+    required this.orderId,
   });
 
   factory Orders.fromJson(Map<String, dynamic> json) {
@@ -44,6 +46,7 @@ class Orders {
       phoneNumber: json['phoneNumber'],
       delivererPhoneNumber: json['delivererPhoneNumber'],
       prefers: json['prefers'],
+      orderId: json['orderId'],
     );
   }
 
@@ -62,6 +65,7 @@ class Orders {
       'phoneNumber': phoneNumber,
       'delivererPhoneNumber': delivererPhoneNumber,
       'prefers': prefers,
+      'orderId': orderId,
     };
   }
 }
