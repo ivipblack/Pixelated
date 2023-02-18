@@ -1,10 +1,10 @@
-// ignore_for_file: prefer_const_constructors
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pixelated/home_base.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pixelated/screens/login/login_view.dart';
+import 'package:pixelated/screens/order_details.dart';
 import 'package:pixelated/screens/login/utils.dart';
 
 import 'firebase_options.dart';
@@ -25,8 +25,6 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,17 +33,18 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Pixelated',
       theme: ThemeData(
-        // primarySwatch: Colors.blue,
         textTheme: GoogleFonts.poppinsTextTheme(
           Theme.of(context).textTheme,
         ),
       ),
-      home: MainPage(),
+      home: const MainPage(),
     );
   }
 }
 
 class MainPage extends StatelessWidget {
+  const MainPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +60,7 @@ class MainPage extends StatelessWidget {
               child: Text('Something went wrong'),
             );
           } else if (snapshot.hasData) {
-            return const HomeBase();
+            return OrderDetails();
           } else {
             return const LoginView();
           }

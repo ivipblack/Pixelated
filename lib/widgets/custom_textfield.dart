@@ -1,13 +1,7 @@
-import 'dart:math';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/basic.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class CustomTextField extends StatefulWidget {
-  CustomTextField(
+  const CustomTextField(
       {required this.label,
       required this.hint,
       required this.isPassword,
@@ -76,7 +70,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       )
                     : const Icon(null),
                 hintStyle: TextStyle(
-                  color: Color.fromARGB(141, 255, 255, 255),
+                  color: const Color.fromARGB(141, 255, 255, 255),
                   fontSize: MediaQuery.of(context).size.height * 0.02,
                 ),
               ),
