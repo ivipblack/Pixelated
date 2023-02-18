@@ -38,7 +38,7 @@ class OrderDetails extends StatelessWidget {
             },
           ),
         ),
-        body: const OrderContainer(),
+        body: OrderContainer(),
       ),
     );
   }
