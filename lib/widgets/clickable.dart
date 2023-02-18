@@ -39,13 +39,13 @@ class Clickable extends StatelessWidget {
             child: ElevatedButton(
               // change button color
               style: ButtonStyle(
+                  elevation: MaterialStateProperty.all<double>(0),
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Color(0XFFFFA724)),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(32.0),
                   ))),
-
               onPressed: () {
                 theFunction();
               },

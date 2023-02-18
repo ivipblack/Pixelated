@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/optionbox.dart';
+import 'order_details.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -35,7 +36,14 @@ class Home extends StatelessWidget {
                     OptionBox(
                       buttonText: 'Order',
                       image: 'assets/order.png',
-                      fun: () {},
+                      fun: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const OrderDetails(),
+                          ),
+                        );
+                      },
                     ),
                     Positioned(
                       top: height * 0.39,

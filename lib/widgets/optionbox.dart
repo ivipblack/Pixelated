@@ -7,7 +7,7 @@ import 'clickable.dart';
 class OptionBox extends StatelessWidget {
   final String buttonText;
   final String image;
-  final Function? fun;
+  final Function fun;
 
   const OptionBox({
     super.key,
@@ -27,7 +27,11 @@ class OptionBox extends StatelessWidget {
         children: <Widget>[
           Center(
             child: Container(
-              child: Clickable(text: buttonText, theFunction: () {}),
+              child: Clickable(
+                  text: buttonText,
+                  theFunction: () {
+                    fun();
+                  }),
               height: MediaQuery.of(context).size.height * 0.18,
               width: MediaQuery.of(context).size.width * 0.88,
               decoration: BoxDecoration(
