@@ -9,6 +9,7 @@ import 'package:switcher/switcher.dart';
 
 import '../data/models/User.dart';
 import '../data/models/order.dart';
+import '../widgets/orders_control.dart';
 import '../widgets/recieve_delivery_orders.dart';
 
 class OrdersPage extends StatefulWidget {
@@ -34,48 +35,7 @@ class _OrdersPageState extends State<OrdersPage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          StreamBuilder(
-              stream: FirebaseFirestore.instance
-                  .collection('User')
-                  .doc(uid)
-                  .snapshots(),
-              builder: (context, userSnapshot) {
-                if (userSnapshot.hasData) {
-                  Users user = Users.fromJson(userSnapshot.data!.data()!);
-                  return StreamBuilder(
-                    stream: FirebaseFirestore.instance
-                        .collection('Orders')
-                        .snapshots(),
-                    builder: (context, orderSnapshot) {
-                      if (orderSnapshot.hasData) {
-                        if (user.isAvailable && user.isVerifiedAsDliverer) {
-                          return ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: orderSnapshot.data!.docs.length,
-                            itemBuilder: (context, index) {
-                              Orders order = Orders.fromJson(
-                                  orderSnapshot.data!.docs[index].data());
-                              return Card(
-                                child: ListTile(
-                                  title: Text(order.address),
-                                  subtitle: Text(order.status),
-                                  trailing: Text('6.8'),
-                                ),
-                              );
-                            },
-                          );
-                        } else {
-                          return Center(
-                            child: Text('You are not available'),
-                          );
-                        }
-                      }
-                      return Container();
-                    },
-                  );
-                }
-                return Container();
-              }),
+          OrdersControl(uid: uid),
           // If the deliverer is verified, it will show the switcher to recieve orders
           //otherwise it will be empty
           recieveDeliveryOrders(uid: uid),

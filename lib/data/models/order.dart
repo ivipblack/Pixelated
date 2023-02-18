@@ -1,14 +1,17 @@
 class Orders {
   final String customerId;
+  final String phoneNumber;
+  final String delivererPhoneNumber;
   String? delivererId;
   final String address;
   final String status;
   final DateTime createdAt;
-  final String meal;
+  String meal;
   final String drink;
   final String salad;
   final String sweet;
   final bool needBread;
+  String? prefers;
 
   Orders({
     required this.customerId,
@@ -20,6 +23,10 @@ class Orders {
     required this.salad,
     required this.sweet,
     required this.needBread,
+    this.delivererId,
+    required this.phoneNumber,
+    required this.delivererPhoneNumber,
+    this.prefers,
   });
 
   factory Orders.fromJson(Map<String, dynamic> json) {
@@ -33,6 +40,10 @@ class Orders {
       salad: json['salad'],
       sweet: json['sweet'],
       needBread: json['needBread'],
+      delivererId: json['delivererId'],
+      phoneNumber: json['phoneNumber'],
+      delivererPhoneNumber: json['delivererPhoneNumber'],
+      prefers: json['prefers'],
     );
   }
 
@@ -47,6 +58,10 @@ class Orders {
       'salad': salad,
       'sweet': sweet,
       'needBread': needBread,
+      'delivererId': delivererId,
+      'phoneNumber': phoneNumber,
+      'delivererPhoneNumber': delivererPhoneNumber,
+      'prefers': prefers,
     };
   }
 }
