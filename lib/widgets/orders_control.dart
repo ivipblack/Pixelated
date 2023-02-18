@@ -8,7 +8,7 @@ import 'package:pixelated/data/web_services/meals_services.dart';
 import '../constants/colors.dart';
 import '../data/models/User.dart';
 import '../data/models/order.dart';
-import 'mu_order_card.dart';
+import 'my_order_card.dart';
 
 class OrdersControl extends StatelessWidget {
   const OrdersControl({

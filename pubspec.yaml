@@ -48,7 +48,9 @@ dependencies:
   flutter_svg: ^1.1.6
   loading_indicator: ^3.1.0
   switcher: ^1.0.0
-
+  flutter_phone_direct_caller: ^2.1.1
+  font_awesome_flutter: ^10.4.0
+  permission_handler: ^10.2.0
 
 dev_dependencies:
   flutter_test:
