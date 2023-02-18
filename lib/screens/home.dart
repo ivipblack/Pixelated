@@ -30,7 +30,7 @@ class Home extends StatelessWidget {
                 child: Stack(
                   children: [
                     OptionBox(
-                      buttonText: 'Order a Meal',
+                      buttonText: 'Order',
                       image: 'assets/order.png',
                       fun: () {},
                     ),
@@ -40,7 +40,7 @@ class Home extends StatelessWidget {
                       // left: width * 0.1,
                       // bottom: height * 0.1,
                       child: OptionBox(
-                        buttonText: 'Deliver a meal',
+                        buttonText: 'Deliver',
                         image: 'assets/delivary.png',
                         fun: () {},
                       ),

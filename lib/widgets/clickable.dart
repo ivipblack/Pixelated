@@ -55,8 +55,7 @@ class Clickable extends StatelessWidget {
                   text,
                   style: TextStyle(
                       color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: MediaQuery.of(context).size.height * 0.018),
+                      fontSize: MediaQuery.of(context).size.height * 0.016),
                 ),
               ),
             ),
