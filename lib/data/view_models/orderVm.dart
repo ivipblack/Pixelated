@@ -45,7 +45,7 @@ class OrderVM {
     ),
     OrderCardModel(
       label: 'Yogurt',
-      iconPath: 'assets/yoghurt2.svg',
+      iconPath: 'assets/yoghurt.svg',
     ),
   ];
 }
