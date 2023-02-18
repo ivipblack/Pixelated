@@ -223,10 +223,47 @@ class OrdersControl extends StatelessWidget {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Row(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            // change the status of the order to delivered
+                            FirebaseFirestore.instance
+                                .collection('Orders')
+                                .doc(orderSnapshot.data!.docs[index].id)
+                                .update({
+                              'status': 'Delivered',
+                            });
+                          },
+                          child: Container(
+                            height: 26,
+                            width: 85,
+                            decoration: BoxDecoration(
+                              color: MyColors.myOrange,
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Delivered!',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ],
-            )
+            ),
+            SizedBox(
+              height: 10,
+            ),
           ],
         ),
       ),

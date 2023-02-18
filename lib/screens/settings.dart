@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Setting extends StatefulWidget {
   const Setting({super.key});
@@ -377,7 +378,9 @@ class _SettingState extends State<Setting> {
                 ),
                 Center(
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      FirebaseAuth.instance.signOut();
+                    },
                     style: OutlinedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(horizontal: 40),
                         shape: RoundedRectangleBorder(
