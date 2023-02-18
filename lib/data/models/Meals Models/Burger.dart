@@ -1,3 +1,5 @@
+// ignore_for_file: annotate_overrides, overridden_fields
+
 import 'Meal.dart';
 
 class Burger extends Meal {

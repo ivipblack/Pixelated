@@ -1,4 +1,4 @@
-class Order {
+class Orders {
   final String customerId;
   String? delivererId;
   final String address;
@@ -10,7 +10,7 @@ class Order {
   final String sweet;
   final bool needBread;
 
-  Order({
+  Orders({
     required this.customerId,
     required this.address,
     required this.status,
@@ -22,8 +22,8 @@ class Order {
     required this.needBread,
   });
 
-  factory Order.fromJson(Map<String, dynamic> json) {
-    return Order(
+  factory Orders.fromJson(Map<String, dynamic> json) {
+    return Orders(
       customerId: json['customerId'],
       address: json['address'],
       status: json['status'],

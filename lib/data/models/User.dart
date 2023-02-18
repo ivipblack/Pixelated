@@ -1,4 +1,4 @@
-class User {
+class Users {
   String id;
   String phoneNumber;
   String? defaultAddress;
@@ -10,7 +10,7 @@ class User {
   bool isAvailable;
   bool isVerifiedAsDliverer = true;
 
-  User({
+  Users({
     required this.id,
     required this.phoneNumber,
     this.defaultAddress,
@@ -20,10 +20,11 @@ class User {
     this.currentOrder,
     this.currentDeliveryOrders,
     this.isAvailable = true,
+    this.isVerifiedAsDliverer = true,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
+  factory Users.fromJson(Map<String, dynamic> json) {
+    return Users(
       id: json['id'],
       phoneNumber: json['phoneNumber'],
       defaultAddress: json['defaultAddress'],
@@ -31,8 +32,9 @@ class User {
       hadLunch: json['hadLunch'],
       hadDinner: json['hadDinner'],
       currentOrder: json['currentOrder'],
-      currentDeliveryOrders: json['currentDeliveryOrders'].cast<String>(),
+      currentDeliveryOrders: json['currentDeliveryOrders'],
       isAvailable: json['isAvailable'],
+      isVerifiedAsDliverer: json['isVerifiedAsDliverer'],
     );
   }
 
@@ -47,6 +49,7 @@ class User {
       'currentOrder': currentOrder,
       'currentDeliveryOrders': currentDeliveryOrders,
       'isAvailable': isAvailable,
+      'isVerifiedAsDliverer': isVerifiedAsDliverer,
     };
   }
 }

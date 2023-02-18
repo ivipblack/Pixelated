@@ -133,3 +133,4 @@ app.*.symbols
 .flutter-plugins-dependencies
 .dart_tool/package_config.json
 .flutter-plugins-dependencies
+ios/Runner.xcodeproj/project.pbxproj

@@ -5,11 +5,11 @@ import '../data/models/User.dart';
 class DatabaseService {
   final String uid;
   DatabaseService({required this.uid});
-  late User user;
+  late Users user;
   final CollectionReference customerCollection =
       FirebaseFirestore.instance.collection('User');
   Future updateUserData(String email, String phoneNumber) async {
-    user = User(
+    user = Users(
       id: uid,
       phoneNumber: phoneNumber,
     );

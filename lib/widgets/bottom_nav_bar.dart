@@ -48,7 +48,7 @@ class BottomNavBar extends StatelessWidget {
                             children: [
                               SvgPicture.asset(
                                 'assets/Vector-1.svg',
-                                color: pageIndex.value == 1
+                                color: pageIndex.value == 0
                                     ? Colors.grey
                                     : Colors.grey.withOpacity(0.5),
                               ),
