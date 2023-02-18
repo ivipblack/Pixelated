@@ -31,13 +31,13 @@ class OrderContainer extends HookWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
-          color: MyColors.myWhite,
+          color: MyColors.myCream,
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.2),
               offset: const Offset(0, 0),
-              blurRadius: 20,
-              spreadRadius: -12,
+              blurRadius: 10,
+              spreadRadius: 2,
             ),
           ],
         ),
@@ -203,34 +203,31 @@ class OrderContainer extends HookWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 5),
-              child: InkWell(
-                onTap: () {},
-                child: Container(
-                  height: 52,
-                  width: 335,
-                  decoration: BoxDecoration(
-                    color: MyColors.myOrange,
-                    borderRadius: BorderRadius.circular(32),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: const [
-                      Text(
-                        'Total: 4.60 SAR',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                        ),
+            InkWell(
+              onTap: () {},
+              child: Container(
+                height: 52,
+                width: 335,
+                decoration: BoxDecoration(
+                  color: MyColors.myOrange,
+                  borderRadius: BorderRadius.circular(32),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: const [
+                    Text(
+                      'Total: 4.60 SAR',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
                       ),
-                      Text(
-                        'Pay',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                        ),
+                    ),
+                    Text(
+                      'Pay',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
