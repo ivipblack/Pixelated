@@ -19,7 +19,7 @@ class OrderDetails extends StatelessWidget {
           end: Alignment.bottomCenter,
           stops: const [0.3, 0.9],
           colors: [
-            MyColors.myGreen,
+            MyColors.myCream,
             MyColors.myWhite,
           ],
         ),

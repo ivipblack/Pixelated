@@ -1,6 +1,7 @@
 // ignore_for_file: sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:pixelated/constants/colors.dart';
 
 import 'clickable.dart';
 
@@ -20,9 +21,8 @@ class OptionBox extends StatelessWidget {
   Widget build(BuildContext context) {
     //whole card
     return Container(
-      // color: Colors.red,
       height: 420,
-      // width: 400,
+      // color: Colors.red,
       child: Stack(
         children: <Widget>[
           Center(
@@ -35,9 +35,17 @@ class OptionBox extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.18,
               width: MediaQuery.of(context).size.width * 0.88,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(32),
-                color: Colors.white.withOpacity(0.6),
-              ),
+                  boxShadow: [
+                    BoxShadow(
+                      // offset: const Offset(0, ),
+                      color: Colors.black.withOpacity(0.5),
+                      spreadRadius: -4,
+                      blurRadius: 12,
+                      // changes position of shadow
+                    ),
+                  ],
+                  borderRadius: BorderRadius.circular(32),
+                  color: MyColors.myWhite),
             ),
           ),
           // Big light background

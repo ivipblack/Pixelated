@@ -6,6 +6,7 @@ import 'package:pixelated/screens/home.dart';
 import 'package:pixelated/screens/order_details.dart';
 
 import 'screens/orders_page.dart';
+import 'screens/settings.dart';
 import 'widgets/bottom_nav_bar.dart';
 
 class HomeBase extends HookWidget {
@@ -21,7 +22,7 @@ class HomeBase extends HookWidget {
     final List<Widget> _pages = [
       Home(),
       OrdersPage(),
-      // OrderDetails(),
+      Setting(),
     ];
     final initialPageIndex;
     if (pageNum == 1) {
