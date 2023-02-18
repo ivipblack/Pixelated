@@ -1,14 +1,8 @@
-import 'dart:math';
-
 import 'package:email_validator/email_validator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/basic.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  CustomTextFormField(
+  const CustomTextFormField(
       {required this.label,
       required this.hint,
       required this.isPassword,
@@ -85,7 +79,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                       )
                     : const Icon(null),
                 hintStyle: TextStyle(
-                  color: Color.fromARGB(141, 153, 153, 153),
+                  color: const Color.fromARGB(141, 153, 153, 153),
                   fontSize: MediaQuery.of(context).size.height * 0.02,
                 ),
               ),

@@ -1,23 +1,36 @@
 import 'package:flutter/material.dart';
-// import firebase
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:pixelated/constants/colors.dart';
+import 'package:pixelated/widgets/order/order_container.dart';
 
 class OrderDetails extends StatelessWidget {
-  OrderDetails({super.key});
-  String userId = FirebaseAuth.instance.currentUser!.uid;
+  const OrderDetails({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          stops: const [0.3, 0.9],
+          colors: [
+            MyColors.myGreen,
+            MyColors.myWhite,
+          ],
+        ),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        extendBodyBehindAppBar: false,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
-
           title: const Text(
             'Finalizing',
             style: TextStyle(
-                color: Colors.black, fontSize: 25, fontWeight: FontWeight.w600),
+                color: Colors.black, fontSize: 25, fontWeight: FontWeight.w500),
           ),
-          //make a back button
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
             onPressed: () {
@@ -25,16 +38,8 @@ class OrderDetails extends StatelessWidget {
             },
           ),
         ),
-        body: Column(
-          children: [
-            // make a button to logout from firebase
-            ElevatedButton(
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-              },
-              child: Text(userId),
-            ),
-          ],
-        ));
+        body: const OrderContainer(),
+      ),
+    );
   }
 }
