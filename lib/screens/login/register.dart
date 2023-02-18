@@ -104,7 +104,7 @@ class _UserSignUpViewState extends State<UserSignUpView> {
                                   isPassword: false,
                                   controller: phoneController),
                               CustomButton(
-                                label: 'Sign Up',
+                                label: 'Sign up',
                                 onPressed: () {
                                   setState(() {
                                     signUp(
@@ -140,7 +140,7 @@ class _UserSignUpViewState extends State<UserSignUpView> {
                             },
                             child: Text(' Login',
                                 style: TextStyle(
-                                  color: Color(0xffF9A826),
+                                  color: Color.fromARGB(255, 215, 220, 231),
                                   decoration: TextDecoration.underline,
                                   fontSize: MediaQuery.of(context).size.height *
                                       0.017,
@@ -148,18 +148,6 @@ class _UserSignUpViewState extends State<UserSignUpView> {
                           ),
                         ),
                       ])),
-                      Row(children: [
-                        Expanded(
-                          child: Container(
-                              margin: EdgeInsets.only(
-                                  right: MediaQuery.of(context).size.height *
-                                      0.01),
-                              child: Divider(
-                                color: Colors.white,
-                                height: 36,
-                              )),
-                        ),
-                      ]),
                     ],
                   ),
                 ),
