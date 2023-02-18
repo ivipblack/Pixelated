@@ -20,12 +20,12 @@ class MealsServices {
 
   static String getMealDetails(String meal) {
     switch (meal) {
-      case 'Chicken':
+      case 'Chicken & Rice':
         return ChickenRice()
             .included
             .toString()
             .substring(1, ChickenRice().included!.toString().length - 1);
-      case 'Meat':
+      case 'Meat & Rice':
         return Meat()
             .included
             .toString()
@@ -35,12 +35,12 @@ class MealsServices {
             .included
             .toString()
             .substring(1, Brosted().included!.toString().length - 1);
-      case 'Burger':
+      case 'Burger Meal':
         return Burger()
             .included
             .toString()
             .substring(1, Burger().included!.toString().length - 1);
-      case 'Grill':
+      case 'Grills':
         return Grill()
             .included
             .toString()
