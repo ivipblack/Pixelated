@@ -134,7 +134,9 @@ class _ChooseMealState extends State<ChooseMeal> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => OrderDetails(),
+                          builder: (context) => OrderDetails(
+                            meal: MealsServices.getMeals()[index],
+                          ),
                         ),
                       );
                     },

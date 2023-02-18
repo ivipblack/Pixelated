@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:pixelated/constants/colors.dart';
 import 'package:pixelated/widgets/order/order_container.dart';
 
+import '../data/models/Meals Models/Meal.dart';
+
 class OrderDetails extends StatelessWidget {
-  const OrderDetails({super.key});
+  const OrderDetails({super.key, required this.meal});
+
+  final Meal meal;
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -38,7 +42,7 @@ class OrderDetails extends StatelessWidget {
             },
           ),
         ),
-        body: OrderContainer(),
+        body: OrderContainer(meal: meal),
       ),
     );
   }

@@ -21,7 +21,7 @@ class HomeBase extends HookWidget {
     final List<Widget> _pages = [
       Home(),
       OrdersPage(),
-      OrderDetails(),
+      // OrderDetails(),
     ];
     final initialPageIndex;
     if (pageNum == 1) {

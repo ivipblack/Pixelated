@@ -3,12 +3,21 @@
 import 'package:flutter/material.dart';
 import 'package:pixelated/constants/colors.dart';
 import 'package:pixelated/home_base.dart';
-
+import '../data/models/order.dart';
+import '../data/web_services/order_services.dart';
 import 'orders_page.dart';
 
-class PaymentPage extends StatelessWidget {
+class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key});
 
+  @override
+  State<PaymentPage> createState() => _PaymentPageState();
+
+  @override
+  void initState() {}
+}
+
+class _PaymentPageState extends State<PaymentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

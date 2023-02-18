@@ -43,11 +43,11 @@ class OrdersControl extends StatelessWidget {
                       orders.add(order);
                     }
                   }
-                  for (var i = 0; i < orders.length; i++) {
-                    if (orders[i].customerId == uid) {
-                      return MyOrderCard(orders: orders, i: i);
-                    }
-                  }
+                  // for (var i = 0; i < orders.length; i++) {
+                  //   if (orders[i].customerId == uid) {
+                  //     return MyOrderCard(orders: orders, i: i);
+                  //   }
+                  // }
 
                   if (user.isAvailable &&
                       user.isVerifiedAsDliverer &&

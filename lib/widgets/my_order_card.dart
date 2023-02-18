@@ -144,7 +144,6 @@ class MyOrderCard extends StatelessWidget {
                                   ),
                                   Text("Status: " + orders[i].status),
                                   Text("Total price: 7.6 SAR"),
-                                  Text("Order ID: " + orders[i].orderId),
                                 ],
                               ),
                             );
