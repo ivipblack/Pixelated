@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../models/User.dart';
+import '../models/user.dart';
 
 class UserServices {
   static Future<Users> getUserById(String id) async {

@@ -9,7 +9,7 @@ import 'package:pixelated/screens/choose_meal.dart';
 import 'package:pixelated/widgets/order/order_card.dart';
 
 import '../../data/models/Meals Models/Meal.dart';
-import '../../data/models/User.dart';
+import '../../data/models/user.dart';
 import '../../data/models/order.dart';
 import '../../data/web_services/order_services.dart';
 import '../../screens/payment_page.dart';

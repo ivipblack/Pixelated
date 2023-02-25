@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../data/models/User.dart';
+import '../data/models/user.dart';
 
 class DatabaseService {
   final String uid;

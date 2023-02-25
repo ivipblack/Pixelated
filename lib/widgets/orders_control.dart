@@ -11,7 +11,7 @@ import 'package:pixelated/data/web_services/meals_services.dart';
 import 'package:pixelated/data/web_services/user_services.dart';
 import 'package:intl/intl.dart';
 import '../constants/colors.dart';
-import '../data/models/User.dart';
+import '../data/models/user.dart';
 import '../data/models/order.dart';
 import 'assignedCard.dart';
 import 'my_order_card.dart';

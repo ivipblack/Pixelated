@@ -7,7 +7,7 @@ import 'package:pixelated/constants/colors.dart';
 import 'package:switcher/core/switcher_size.dart';
 import 'package:switcher/switcher.dart';
 
-import '../data/models/User.dart';
+import '../data/models/user.dart';
 import '../data/models/order.dart';
 import '../widgets/orders_control.dart';
 import '../widgets/recieve_delivery_orders.dart';
