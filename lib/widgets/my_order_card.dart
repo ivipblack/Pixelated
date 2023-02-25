@@ -97,7 +97,7 @@ class MyOrderCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Deliver to: ' + orders[i].address,
+                Text('Location: ' + orders[i].address,
                     style: TextStyle(fontSize: 15)),
                 Row(
                   children: [
