@@ -3,7 +3,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:pixelated/constants/colors.dart';
+import 'package:pixelated/screens/choose_meal.dart';
 import '../data/models/User.dart';
 import '../data/web_services/user_services.dart';
 
@@ -104,16 +105,24 @@ class _HomeState extends State<Home> {
 
     bool isAvailable = true;
     return Scaffold(
+      backgroundColor: MyColors.myCream,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        title: const Text(
+          'Order',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 20,
+          ),
+        ),
+        backgroundColor: MyColors.myCream,
         elevation: 0,
         actions: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+            padding: EdgeInsets.fromLTRB(width * 0.27, 0, 30, 0),
             child: Container(
               width: 150,
               decoration: BoxDecoration(
-                color: Colors.grey[200],
+                color: MyColors.myWhite,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Column(
@@ -138,8 +147,10 @@ class _HomeState extends State<Home> {
                       if (snapshot.hasData) {
                         Users user = Users.fromJson(
                             snapshot.data!.data()! as Map<String, dynamic>);
+
                         if (user.defaultAddress != null &&
                             user.defaultAddress != "") {
+                          hasAddress = true;
                           return SizedBox(
                             height: 20,
                             child: InkWell(
@@ -234,7 +245,7 @@ class _HomeState extends State<Home> {
                                                 height: 40,
                                                 width: 200,
                                                 decoration: BoxDecoration(
-                                                  color: Colors.grey[200],
+                                                  color: MyColors.myWhite,
                                                   borderRadius:
                                                       BorderRadius.circular(10),
                                                 ),
@@ -266,7 +277,7 @@ class _HomeState extends State<Home> {
                             ),
                           );
                         } else {
-                          // show a dialog box to add address
+                          hasAddress = false;
                           return SizedBox(
                             height: 20,
                             child: InkWell(
@@ -410,6 +421,7 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
+      body: ChooseMeal(),
     );
   }
 }

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:pixelated/constants/colors.dart';
 import 'package:pixelated/screens/home.dart';
 import 'package:pixelated/screens/order_details.dart';
 
@@ -32,12 +33,12 @@ class HomeBase extends HookWidget {
     }
 
     return Scaffold(
+      backgroundColor: MyColors.myCream,
       body: IndexedStack(
         index: initialPageIndex.value,
         children: _pages,
       ),
       bottomNavigationBar: BottomNavBar(pageIndex: initialPageIndex),
-      backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
     );
   }

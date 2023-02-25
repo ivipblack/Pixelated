@@ -46,4 +46,24 @@ class UserServices {
       rethrow;
     }
   }
+
+  // check if user has a default address
+  static Future<bool> hasDefaultAddress(String id) async {
+    final user = await FirebaseFirestore.instance
+        .collection('User')
+        .doc(id)
+        .get()
+        .then((value) => Users.fromJson(value.data()!));
+    return user.defaultAddress != null && user.defaultAddress != "";
+  }
+
+  // get user phone number
+  static Future<String> getUserPhoneNumber(String id) async {
+    final user = await FirebaseFirestore.instance
+        .collection('User')
+        .doc(id)
+        .get()
+        .then((value) => Users.fromJson(value.data()!));
+    return user.phoneNumber;
+  }
 }

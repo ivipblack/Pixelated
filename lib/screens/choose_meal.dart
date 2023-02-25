@@ -1,7 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pixelated/constants/colors.dart';
+import '../data/models/User.dart';
 import '../data/web_services/meals_services.dart';
+import '../data/web_services/user_services.dart';
 import 'order_details.dart';
 
 class ChooseMeal extends StatefulWidget {
@@ -11,22 +16,30 @@ class ChooseMeal extends StatefulWidget {
   State<ChooseMeal> createState() => _ChooseMealState();
 }
 
+bool? hasAddress;
+
 class _ChooseMealState extends State<ChooseMeal> {
   @override
   Widget build(BuildContext context) {
-    // media query
+    @override
+    void initState() {
+      UserServices.hasDefaultAddress(FirebaseAuth.instance.currentUser!.uid)
+          .then((value) {
+        setState(() {
+          hasAddress = value;
+        });
+      });
+      super.initState();
+    }
+
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Choose a Meal', style: TextStyle(color: Colors.black)),
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        iconTheme: IconThemeData(color: Colors.black),
-      ),
+      backgroundColor: MyColors.myCream,
       body: Column(
         children: [
+          SizedBox(height: height * 0.01),
           Expanded(
             child: ListView.builder(
               itemCount: MealsServices.getMeals().length,
@@ -42,7 +55,7 @@ class _ChooseMealState extends State<ChooseMeal> {
 
   Padding mealCard(double width, double height, int index) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(30, 18, 30, 18),
+      padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
       child: Container(
         width: width,
         height: height * 0.2,
@@ -131,14 +144,42 @@ class _ChooseMealState extends State<ChooseMeal> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => OrderDetails(
-                            meal: MealsServices.getMeals()[index],
+                      UserServices.hasDefaultAddress(
+                              FirebaseAuth.instance.currentUser!.uid)
+                          .then((value) {
+                        setState(() {
+                          hasAddress = value;
+                        });
+                      });
+                      if (hasAddress!) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => OrderDetails(
+                              meal: MealsServices.getMeals()[index],
+                            ),
                           ),
-                        ),
-                      );
+                        );
+                      } else {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text('No Address specified'),
+                              content:
+                                  Text('Please add an address to continue'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text('OK'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }
                     },
                     child: Container(
                       height: 26,

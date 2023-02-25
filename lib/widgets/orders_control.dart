@@ -1,13 +1,15 @@
 // ignore_for_file: prefer_interpolation_to_compose_strings, prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:pixelated/data/models/Meals%20Models/Meat.dart';
 import 'package:pixelated/data/web_services/meals_services.dart';
-
+import 'package:pixelated/data/web_services/user_services.dart';
+import 'package:intl/intl.dart';
 import '../constants/colors.dart';
 import '../data/models/User.dart';
 import '../data/models/order.dart';
@@ -15,7 +17,7 @@ import 'assignedCard.dart';
 import 'my_order_card.dart';
 
 class OrdersControl extends StatelessWidget {
-  const OrdersControl({
+  OrdersControl({
     super.key,
     required this.uid,
   });
@@ -27,6 +29,8 @@ class OrdersControl extends StatelessWidget {
     }
   }
 
+  Users? user;
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
@@ -34,7 +38,7 @@ class OrdersControl extends StatelessWidget {
             FirebaseFirestore.instance.collection('User').doc(uid).snapshots(),
         builder: (context, userSnapshot) {
           if (userSnapshot.hasData) {
-            Users user = Users.fromJson(userSnapshot.data!.data()!);
+            user = Users.fromJson(userSnapshot.data!.data()!);
             return StreamBuilder(
                 stream:
                     FirebaseFirestore.instance.collection('Orders').snapshots(),
@@ -66,8 +70,8 @@ class OrdersControl extends StatelessWidget {
                           if (orders[index].customerId == uid) {
                             return MyOrderCard(orders: orders, i: index);
                           }
-                          if (user.isAvailable &&
-                              user.isVerifiedAsDliverer &&
+                          if (user!.isAvailable &&
+                              user!.isVerifiedAsDliverer &&
                               orders.isNotEmpty) {
                             if (orders[index].status == 'Pending' &&
                                 (orders[index].delivererId == '' ||
@@ -96,10 +100,13 @@ class OrdersControl extends StatelessWidget {
 
   Container AssignedCard(BuildContext context, List<Orders> orders, int index,
       AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> orderSnapshot) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+
     return Container(
       width: 300,
       height: 120,
-      margin: EdgeInsets.all(25),
+      margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
@@ -113,7 +120,7 @@ class OrdersControl extends StatelessWidget {
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -121,7 +128,7 @@ class OrdersControl extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Deliver..",
+                  "Deliver to: ${orders[index].address}",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 Text(orders[index].status,
@@ -176,31 +183,126 @@ class OrdersControl extends StatelessWidget {
                           builder: (BuildContext context) {
                             return AlertDialog(
                               title: Text("Order Details"),
-                              content: Column(
-                                children: [
-                                  Text(
-                                    "Address: " + orders[index].address,
-                                  ),
-                                  Text(
-                                    "Phone number: " +
-                                        orders[index].phoneNumber,
-                                  ),
-                                  Text("Status: " + orders[index].status),
-                                  Text("Total price: 7.6 SAR"),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Text(
-                                    "Order: " +
-                                        MealsServices.getMealDetails(
-                                            orders[index].meal),
-                                  ),
-                                  Text("Bevarage: " + orders[index].drink),
-                                  Text("Side: " + orders[index].salad),
-                                  Text("Sweet: " + orders[index].sweet),
-                                  Text("Special instructions: " +
-                                      orders[index].prefers!),
-                                ],
+                              content: Container(
+                                height: height * 0.5,
+                                child: Column(
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        // write delivery to in bold and the address in normal
+                                        Text(
+                                          "Delivery to: " +
+                                              orders[index].address,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          "Phone number: " +
+                                              orders[index].phoneNumber,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        Text(
+                                          "Order time: " +
+                                              // show only time year and month and day
+                                              DateFormat('yyyy-MM-dd – kk:mm')
+                                                  .format(
+                                                      orders[index].createdAt),
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+
+                                        SizedBox(
+                                          height: 20,
+                                        ),
+                                        Text(
+                                          "Order: " +
+                                              MealsServices.getMealDetails(
+                                                orders[index].meal,
+                                              ),
+                                        ),
+                                        Text(
+                                            "Bevarage: " + orders[index].drink),
+                                        Text("Side: " + orders[index].salad),
+                                        Text("Sweet: " + orders[index].sweet),
+                                        Text("Special instructions: " +
+                                            orders[index].prefers!),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+
+                                        Text(
+                                          "Total price: 7.6 SAR",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Text(
+                                      "The order is marked as PAID",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Please check that you recieved the payment",
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 12,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        orders[index].status == 'Assigned'
+                                            ? InkWell(
+                                                onTap: () {
+                                                  // change the status of the order to delivered
+                                                  FirebaseFirestore.instance
+                                                      .collection('Orders')
+                                                      .doc(orderSnapshot
+                                                          .data!.docs[index].id)
+                                                      .update({
+                                                    'status': 'Delivered',
+                                                  });
+                                                },
+                                                child: Container(
+                                                  height: 26,
+                                                  width: 100,
+                                                  decoration: BoxDecoration(
+                                                    color: MyColors.myOrange,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            25),
+                                                  ),
+                                                  child: Center(
+                                                      child: Text(
+                                                    'Delivered',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  )),
+                                                ),
+                                              )
+                                            : Container(),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             );
                           },
@@ -228,41 +330,40 @@ class OrdersControl extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        InkWell(
-                          onTap: () {
-                            // change the status of the order to delivered
-                            FirebaseFirestore.instance
-                                .collection('Orders')
-                                .doc(orderSnapshot.data!.docs[index].id)
-                                .update({
-                              'status': 'Delivered',
-                            });
-                          },
-                          child: Container(
-                            height: 26,
-                            width: 85,
-                            decoration: BoxDecoration(
-                              color: MyColors.myOrange,
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'Delivered!',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w600,
+                        orders[index].status == 'Assigned'
+                            ? InkWell(
+                                onTap: () {
+                                  // change the status of the order to delivered
+                                  FirebaseFirestore.instance
+                                      .collection('Orders')
+                                      .doc(orderSnapshot.data!.docs[index].id)
+                                      .update({
+                                    'status': 'Delivered',
+                                  });
+                                },
+                                child: Container(
+                                  height: 26,
+                                  width: 85,
+                                  decoration: BoxDecoration(
+                                    color: MyColors.myOrange,
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Delivered!',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
-                          ),
-                        ),
+                              )
+                            : Container(),
                       ],
                     ),
                   ],
                 ),
               ],
-            ),
-            SizedBox(
-              height: 10,
             ),
           ],
         ),

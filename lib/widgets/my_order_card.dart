@@ -28,7 +28,7 @@ class MyOrderCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 120,
-      margin: EdgeInsets.all(25),
+      margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),

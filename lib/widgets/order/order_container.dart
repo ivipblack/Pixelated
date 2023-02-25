@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:pixelated/constants/colors.dart';
 import 'package:pixelated/data/view_models/orderVm.dart';
+import 'package:pixelated/data/web_services/user_services.dart';
 import 'package:pixelated/screens/choose_meal.dart';
 import 'package:pixelated/widgets/order/order_card.dart';
 
@@ -41,7 +42,10 @@ class OrderContainer extends HookWidget {
 
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-
+    Users? user;
+    UserServices.getUserById(uid).then((value) {
+      user = value;
+    });
     return Padding(
       padding: const EdgeInsets.fromLTRB(30, 18, 30, 18),
       child: Container(
@@ -232,7 +236,7 @@ class OrderContainer extends HookWidget {
                   onTap: () {
                     OrderServices.addOrder(Orders(
                       customerId: uid,
-                      address: '829 - 305',
+                      address: user!.defaultAddress!,
                       status: 'Pending',
                       createdAt: DateTime.now(),
                       meal: meal.name!,
@@ -240,7 +244,7 @@ class OrderContainer extends HookWidget {
                       salad: selectedSide,
                       sweet: selectedSweet,
                       needBread: isKhobuzSelected.value,
-                      phoneNumber: '050 000 0000',
+                      phoneNumber: user!.phoneNumber,
                       prefers: controller.text == ''
                           ? 'No Special Instructions'
                           : controller.text,
@@ -256,7 +260,7 @@ class OrderContainer extends HookWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: const [
                       Text(
-                        'Total: 4.60 SAR',
+                        'Total: 7.60 SAR',
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                         ),

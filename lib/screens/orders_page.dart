@@ -26,6 +26,7 @@ class _OrdersPageState extends State<OrdersPage> {
     final height = MediaQuery.of(context).size.height;
     final String uid = FirebaseAuth.instance.currentUser!.uid;
     return Scaffold(
+      backgroundColor: MyColors.myCream,
       appBar: AppBar(
         title: Text('Orders', style: TextStyle(color: Colors.black)),
         elevation: 0,
