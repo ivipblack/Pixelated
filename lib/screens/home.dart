@@ -4,8 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pixelated/constants/colors.dart';
+import 'package:pixelated/data/view_models/homeVm.dart';
 import 'package:pixelated/screens/choose_meal.dart';
-import '../data/models/User.dart';
+import '../data/models/user.dart';
 import '../data/web_services/user_services.dart';
 
 class Home extends StatefulWidget {
@@ -20,90 +21,8 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    String? room;
-    String? building;
-    // make a list of int from 810 to 860
-    final List<int> listOfBuildings = List<int>.generate(50, (i) => 810 + i);
-    final List<int> listOfRooms = [
-      101,
-      102,
-      103,
-      104,
-      105,
-      106,
-      107,
-      108,
-      109,
-      110,
-      111,
-      112,
-      113,
-      114,
-      115,
-      116,
-      117,
-      118,
-      119,
-      120,
-      121,
-      122,
-      123,
-      124,
-      124,
-      125,
-      201,
-      202,
-      203,
-      204,
-      205,
-      206,
-      207,
-      208,
-      209,
-      210,
-      211,
-      212,
-      213,
-      214,
-      215,
-      216,
-      217,
-      218,
-      219,
-      220,
-      221,
-      222,
-      223,
-      224,
-      225,
-      301,
-      302,
-      303,
-      304,
-      305,
-      306,
-      307,
-      308,
-      309,
-      310,
-      311,
-      312,
-      313,
-      314,
-      315,
-      316,
-      317,
-      318,
-      319,
-      320,
-      321,
-      322,
-      323,
-      324,
-      325,
-    ];
+    HomeVm homeVm = HomeVm();
 
-    bool isAvailable = true;
     return Scaffold(
       backgroundColor: MyColors.myCream,
       appBar: AppBar(
@@ -158,7 +77,7 @@ class _HomeState extends State<Home> {
                                 showDialog(
                                   context: context,
                                   builder: (context) => Dialog(
-                                    child: Container(
+                                    child: SizedBox(
                                       height: height * 0.4,
                                       width: width * 0.8,
                                       child: Padding(
@@ -181,7 +100,7 @@ class _HomeState extends State<Home> {
                                               decoration: const InputDecoration(
                                                 labelText: 'Building',
                                               ),
-                                              items: listOfBuildings
+                                              items: homeVm.listOfBuildings
                                                   .map(
                                                     (e) => DropdownMenuItem(
                                                       value: e,
@@ -191,7 +110,8 @@ class _HomeState extends State<Home> {
                                                   .toList(),
                                               onChanged: (value) {
                                                 setState(() {
-                                                  building = value.toString();
+                                                  homeVm.building =
+                                                      value.toString();
                                                 });
                                               },
                                             ),
@@ -203,7 +123,7 @@ class _HomeState extends State<Home> {
                                               decoration: const InputDecoration(
                                                 labelText: 'Room',
                                               ),
-                                              items: listOfRooms
+                                              items: homeVm.listOfRooms
                                                   .map(
                                                     (e) => DropdownMenuItem(
                                                       value: e,
@@ -213,7 +133,8 @@ class _HomeState extends State<Home> {
                                                   .toList(),
                                               onChanged: (value) {
                                                 setState(() {
-                                                  room = value.toString();
+                                                  homeVm.room =
+                                                      value.toString();
                                                 });
                                               },
                                             ),
@@ -225,7 +146,7 @@ class _HomeState extends State<Home> {
                                                 UserServices.addAddressToUser(
                                                   FirebaseAuth.instance
                                                       .currentUser!.uid,
-                                                  "${building!} - ${room!}",
+                                                  "${homeVm.building!} - ${homeVm.room!}",
                                                 );
                                                 Navigator.pop(context);
                                                 ScaffoldMessenger.of(context)
@@ -285,7 +206,7 @@ class _HomeState extends State<Home> {
                                 showDialog(
                                   context: context,
                                   builder: (context) => Dialog(
-                                    child: Container(
+                                    child: SizedBox(
                                       height: height * 0.4,
                                       width: width * 0.8,
                                       child: Padding(
@@ -308,7 +229,7 @@ class _HomeState extends State<Home> {
                                               decoration: const InputDecoration(
                                                 labelText: 'Building',
                                               ),
-                                              items: listOfBuildings
+                                              items: homeVm.listOfBuildings
                                                   .map(
                                                     (e) => DropdownMenuItem(
                                                       value: e,
@@ -318,7 +239,8 @@ class _HomeState extends State<Home> {
                                                   .toList(),
                                               onChanged: (value) {
                                                 setState(() {
-                                                  building = value.toString();
+                                                  homeVm.building =
+                                                      value.toString();
                                                 });
                                               },
                                             ),
@@ -330,7 +252,7 @@ class _HomeState extends State<Home> {
                                               decoration: const InputDecoration(
                                                 labelText: 'Room',
                                               ),
-                                              items: listOfRooms
+                                              items: homeVm.listOfRooms
                                                   .map(
                                                     (e) => DropdownMenuItem(
                                                       value: e,
@@ -340,7 +262,8 @@ class _HomeState extends State<Home> {
                                                   .toList(),
                                               onChanged: (value) {
                                                 setState(() {
-                                                  room = value.toString();
+                                                  homeVm.room =
+                                                      value.toString();
                                                 });
                                               },
                                             ),
@@ -352,7 +275,7 @@ class _HomeState extends State<Home> {
                                                 UserServices.addAddressToUser(
                                                   FirebaseAuth.instance
                                                       .currentUser!.uid,
-                                                  "${building!} - ${room!}",
+                                                  "${homeVm.building!} - ${homeVm.room!}",
                                                 );
                                                 Navigator.pop(context);
                                                 ScaffoldMessenger.of(context)

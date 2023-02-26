@@ -25,7 +25,7 @@ class HomeBase extends HookWidget {
       OrdersPage(),
       Setting(),
     ];
-    final initialPageIndex;
+    final ValueNotifier<int> initialPageIndex;
     if (pageNum == 1) {
       initialPageIndex = useState(1);
     } else {
@@ -33,6 +33,7 @@ class HomeBase extends HookWidget {
     }
 
     return Scaffold(
+      extendBody: true,
       backgroundColor: MyColors.myCream,
       body: IndexedStack(
         index: initialPageIndex.value,

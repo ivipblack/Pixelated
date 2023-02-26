@@ -1,5 +1,3 @@
-import 'User.dart';
-
 class Orders {
   final String customerId;
   final String phoneNumber;
